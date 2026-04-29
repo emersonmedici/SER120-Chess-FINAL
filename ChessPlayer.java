@@ -22,18 +22,18 @@ public class ChessPlayer {
 	public Player player2;
 	public boolean stillPlaying;
 	public int turn;
-	public ChessReplayer myChessReplayer;
+	//public ChessReplayer myChessReplayer;
 	public Path path;
 	
 	//constructors
-	public ChessPlayer(ChessReplayer initChessPlayer){
+	public ChessPlayer(){
 		this.stillPlaying = true;
 		this.player1 = new Player(0);
 		this.player2 = new Player(1);
 		this.printer = new VisualOutput();
 		this.board = new Board(player1,player2);
 		this.turn = 0;
-		this.myChessReplayer = initChessPlayer;
+		//this.myChessReplayer = initChessPlayer;
 		this.path = null;
 	}
 	
@@ -41,45 +41,16 @@ public class ChessPlayer {
 	
 	//runs the game, is a loop that plays rounds over and over as long as the game is still going (no one has won)
 	//pass in a scanner from the game manager to take input later
-	public void playChess(Scanner myScanner, boolean isNewGame, int reloadedTurn, Board passedBoard, String passedName){
+	public void playChess(Scanner myScanner){
 		System.out.println("Starting a chess game...");
 		System.out.println("INPUT 'exit' AT ANY TIME TO SAVE AND QUIT");
 		stillPlaying = true;
-		//System.out.println(board.toString());
 		
-		if(isNewGame){
-			//creates a folder path directory thing for this game
-			path = myChessReplayer.newGameFolder(myScanner);
-			/*if (path != null){
-				System.out.println("not null");
-			}*/
 			while(stillPlaying){
 				playRound(myScanner);
 			}
 			System.out.println("Closing chess game...");
-		} else {
-			path = Path.of(passedName);
-			board = passedBoard;
-			turn=reloadedTurn;
-			while(stillPlaying){
-			if (reloadedTurn%2 != 0){
-				takeTurn(player1, myScanner);
-				reloadedTurn++;
-				//System.out.println("checkForCheckmate(player2) called by playRound");
-				if (board.checkForCheckmate(player2)){
-					stillPlaying = false;
-					printer.printBoard(board);
-					if (player2.getTeam()==0){
-						System.out.println("Black loses!");
-					} else {
-						System.out.println("Whites loses!");
-					}
-				}
-			}
-				playRound(myScanner);
-			}
-			System.out.println("Closing chess game...");
-		}
+		
 	}
 	
 	//each round, player 1 takes a turn, then player 2 takes a turn. if someone wins, the game ends
@@ -206,11 +177,6 @@ public class ChessPlayer {
 		}
 			
 		}
-		//exit while loop, means a valid move has been described\
-		//move the piece
-		//int[][] pathArr = new int[board.getBoardNumCols()][board.getBoardNumRows()];
-		//pathArr = boardData[startCol][startRow].drawPath(startCol,startRow,endCol,endRow,board);
-		//System.out.println(Arrays.deepToString(pathArr).replace("], ", "]\n nextcol: "));
 		
 		if (stillPlaying){
 		
@@ -223,8 +189,6 @@ public class ChessPlayer {
 		}
 		//iterate what turn it is for the purpose of...
 		turn++;
-		//creating a new file that stores the current board state as a string so it can be replayed later perhaps
-		myChessReplayer.newBoardFile(turn, board, path);
 		}
 		
 	}
