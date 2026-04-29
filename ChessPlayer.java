@@ -304,29 +304,8 @@ public class ChessPlayer {
 			}
 		}
 		
-		//whereever pathArray[x][y] == 1, check if there board[x][y] != null
-		//if it's not null, 
-			// check if boardData[endCol][endRow].getTeam() == boardData[startCol][startRow].getTeam()
-			// if this is true, then the piece is trying to land on a friendly piece, which is not allowed
-				// return false
-			//otherwise, this is not true, so it's capturing an enemy, which is allowed
-			//return true
-		//otherwise, it is null, empty spot 
-		//return true
-		
-		//up in take turn, have an if statement
-		// if (pathIsClear())
-		// carry on with further checks
-		// else... 
-		//moveIsValid = false
 		return clearPath;
 	}
-	
-	/*
-	//checkmate method got moved to the board class	
-	public boolean checkForCheckmate(){
-		return false;
-	}*/
 
 	//simple method to convert user input into usable coordinates, should make more reliable and flexible in the future but this works for now
 	public int convertCol(String string){
