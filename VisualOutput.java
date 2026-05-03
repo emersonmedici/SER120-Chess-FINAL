@@ -9,9 +9,44 @@ public class VisualOutput {
 	//variables
 	
 	//constructors
+	public VisualOutput(){
+		//sets the title of the board
+		setTitle("The board");
+		//allows you to exit the window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this set the size of the window when you just open it 
+		setSize(600,600);
+		setLocationRelativeTo(null); //center on the screen
+	}
 	
 	//methods
-	public void printBoard(Board board){
+	public void printBoard(){
+		//int totalRows = board.getBoardNumRows()*4;
+		//int currentRow = 0;
+		//Piece[][] boardData = new Piece[board.getBoardNumCols()][board.getBoardNumRows()];
+		//boardData = board.getBoardData();
+		
+		//this sets the title of the window 
+	
+		
+		JPanel boardPanel = new JPanel();
+		boardPanel.setLayout(new GridLayout(8,8));
+		
+		for (int row = 0; row < 8; row++){
+			//we are in [(row/4)+1] row!
+			//System.out.print("\n"); //new line
+			//System.out.print("|"); //start row of text
+			for (int col = 0; col < 8; col++){
+				printSpace(boardPanel,row,col);
+			}
+		}
+		
+		add(boardPanel);
+		setVisible(true);
+		//System.out.print("\n");
+		
+	}
+	/*public void printBoard(Board board){
 		int totalRows = board.getBoardNumRows()*4;
 		int currentRow = 0;
 		Piece[][] boardData = new Piece[board.getBoardNumCols()][board.getBoardNumRows()];
@@ -56,10 +91,26 @@ public class VisualOutput {
 		
 		System.out.print("\n");
 		
-	}
+	}*/
 	
 	//helper method that determines what color space we are in, then prints filler
-	public void printSpace(int row,int col){
+	//changed it where it will color the square black or white
+	public void printSpaces(JPanel boardPanel, int row, int col){
+		 JPanel square = new JPanel();
+		 square.setPreferredSize(new Dimension(60,60));
+
+		//does the samething as the old code with painting the code square white or black
+		//was trying to figure out how to add pieces, that is taking way too long, so i will 
+		//be taking a break while doing other finals
+		if ((row + col) % 2 == 0){
+				square.setBackground(Color.WHITE);
+			}else {
+				square.setBackground(Color.BLACK);
+				//System.out.print("     |");
+			}
+			boardPanel.add(square);
+		}
+	/*public void printSpace(int row,int col){
 		if (row % 2 == 0){
 			if (col % 2 == 0){
 				System.out.print("/////|");
@@ -71,7 +122,7 @@ public class VisualOutput {
 				System.out.print("     |");
 			} else {
 				System.out.print("/////|");
-			}
+			}*/
 		}
 	}
 }
