@@ -3,7 +3,7 @@
 
 package ser120.ChessProject3;
 
-public class VisualOutput {
+public class VisualOutput extend JFrame {
 	//literally just to print out the board and such
 	
 	//variables
