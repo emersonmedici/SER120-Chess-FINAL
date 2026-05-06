@@ -1,7 +1,7 @@
 //Chess Project 2
 //Knight.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 
 class Knight extends Piece {
@@ -72,8 +72,12 @@ class Knight extends Piece {
 	}
 	
 	//returns a string that says what type of piece it is
-	public String getType(){
+	/*public String getType(){
 		return "knight";
+	}*/
+	
+	public Type getType(){
+		return Type.KNIGHT;
 	}
 	
 }

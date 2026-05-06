@@ -1,7 +1,7 @@
 //Chess Project 2
 //Pawn.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 
 class Pawn extends Piece {
@@ -147,8 +147,12 @@ class Pawn extends Piece {
 	}
 	
 	//returns a string that says what type of piece it is
-	public String getType(){
+	/*public String getType(){
 		return "pawn";
+	}*/
+	
+	public Type getType(){
+		return Type.PAWN;
 	}
 	
 }

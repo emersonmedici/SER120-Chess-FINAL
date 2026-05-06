@@ -1,6 +1,6 @@
 //ll
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 //import ser120.ChessProject2.Piece;
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class Board {
 	//default constructor
 	public Board(){
 	Player player1 = new Player(0);
-	Player player2 = new Player(2);
+	Player player2 = new Player(1);
     this.numRows = 8;
     this.numCols = 8;
     this.boardData = new Piece[numCols][numRows]; //it's coordinates: columns = x, rows = y
@@ -183,9 +183,9 @@ public class Board {
 	
 	//findKing();
 	//removed baord parameter because this method is called by the board itself, so it can just reference itself
-	public int[] findKingSquare(Player player){
+	public int[] findKingSquare(int team){
 		//findung the kings positions through coordinates
-		int Team = player.getTeam();
+		int Team = team;
 		//System.out.println("player team " + player.getTeam());
 			for(int row = 0; row < this.getBoardNumRows();row++){
 				for(int col = 0; col < this.getBoardNumCols();col++){
@@ -194,10 +194,10 @@ public class Board {
 						//Piece piece = boardData[row][col];
 						//System.out.println("piece type: " + boardData[row][col].getType() + " piece team: " + boardData[row][col].getTeam() + " player team: " + player.getTeam());
 						//cannot reference an abstract object, abstract object arent really supposed to exist, so i removed all references to it and continued to reference the piece in question directly from the board's data array
-						if(boardData[col][row].getType().equals("king")){
+						if(boardData[col][row].getType() == Piece.Type.KING ){
 							//System.out.println("is a king");
 							//System.out.println("king team " + boardData[row][col].getTeam());
-							if(boardData[col][row].getTeam() == player.getTeam()){
+							if(boardData[col][row].getTeam() == Team){
 							//has it where the row is at index 0 and col at index 1
 								//System.out.println("king found");
 								return new int[]{col,row};
@@ -213,13 +213,13 @@ public class Board {
 	}
 	
 	//isInCheck method(Player player)
-	public boolean isInCheck(Player player){
+	public boolean isInCheck(int team){
 		//System.out.println("findKingSquare called by isInCheck");
-		int[] kingsPosition =(findKingSquare(player));
+		int[] kingsPosition =(findKingSquare(team));
 		
 		if (kingsPosition != null){
 		
-			int Team = player.getTeam();
+			int Team = team;
 			int kingRow = kingsPosition[0];
 			int kingCol = kingsPosition[1];
 			for(int row = 0; row < this.getBoardNumRows(); row++){
@@ -268,12 +268,12 @@ public class Board {
 	}
 	
 	//determines if the move they have made is legal or not 
-	public boolean getLegalMovement(Player player){
+	public boolean getLegalMovement(int team){
 		//checking if each piece of move is valid or not
 		for(int row = 0; row < this.getBoardNumRows(); row++){
 			for(int col = 0; col < this.getBoardNumCols();col++){
 				Piece piece = boardData[row][col];
-				if(boardData[col][row] != null && boardData[col][row].getTeam() == player.getTeam()){
+				if(boardData[col][row] != null && boardData[col][row].getTeam() == team){
 					//for each square on the the board
 					for(int newRow = 0;newRow < this.getBoardNumRows();newRow++){
 						for(int newCol = 0; newCol < this.getBoardNumCols(); newCol++){
@@ -296,7 +296,7 @@ public class Board {
 								
 								//if the king is not in check
 								//System.out.println("tempBoard.isInCheck called by getLegalMovement");
-									if(tempBoard.isInCheck(player) == false){
+									if(tempBoard.isInCheck(team) == false){
 										return true;
 									}
 								} 
@@ -311,14 +311,14 @@ public class Board {
 	}
 	
 
-	public boolean checkForCheckmate(Player player){
+	public boolean checkForCheckmate(int team){
 		//System.out.println("isInCheck called by CheckForCheckmate");
-		if(!isInCheck(player)){
+		if(!isInCheck(team)){
 			//no check
 			return false;
 		}
 		//System.out.println("getLegalMovement called by checkForCheckmate");
-		if(getLegalMovement(player) == false){
+		if(getLegalMovement(team) == false){
 			return true;
 		}
 		//found no legal movement to allow you to get out of check

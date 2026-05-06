@@ -1,7 +1,7 @@
 //Chess Project 2
 //Player.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 //there will be two players in a game of chess 
 //Each turn must be taken by one of the players

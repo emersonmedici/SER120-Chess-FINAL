@@ -1,7 +1,7 @@
 //Chess Project 2
 //Queen.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 
 class Queen extends Piece {
@@ -127,8 +127,12 @@ class Queen extends Piece {
 	}
 	
 	//returns a string that says what type of piece it is
-	public String getType(){
+	/*public String getType(){
 		return "queen";
+	}*/
+	
+	public Type getType(){
+		return Type.QUEEN;
 	}
 	
 	

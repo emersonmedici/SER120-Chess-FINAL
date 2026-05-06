@@ -1,7 +1,7 @@
 //Chess Project 2
 //Bishop.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 
 class Bishop extends Piece {
@@ -89,8 +89,11 @@ class Bishop extends Piece {
 	}
 	
 	//returns a string that says what type of piece it is
-	public String getType(){
+	/*public String getType(){
 		return "bishop";
+	}*/
+	public Type getType(){
+		return Type.BISHOP;
 	}
 	
 }

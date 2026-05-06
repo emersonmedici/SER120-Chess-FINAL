@@ -1,9 +1,8 @@
+package ser120.ChessProject4;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.EnumMap;
 import java.util.Map;
-
-package ser120.ChessProject3;
 
 /**
  * Renders chess pieces as 8x8 pixel sprites in an 80s arcade block style.

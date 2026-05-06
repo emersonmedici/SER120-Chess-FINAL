@@ -1,7 +1,7 @@
 //Chess Project 2
 //Rook.java
 
-package ser120.ChessProject3;
+package ser120.ChessProject4;
 
 
 class Rook extends Piece {
@@ -90,8 +90,11 @@ class Rook extends Piece {
 	}
 	
 	//returns a string that says what type of piece it is
-	public String getType(){
+	/*public String getType(){
 		return "rook";
+	}*/
+	public Type getType(){
+		return Type.ROOK;
 	}
 	
 }

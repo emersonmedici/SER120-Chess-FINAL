@@ -4,12 +4,7 @@
 
 //import ser120.ChessProject2.Board;
 
-package ser120.ChessProject3;
-import java.util.Scanner;
-import java.util.Arrays;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+package ser120.ChessProject4;
 
 
 public class ChessPlayer {
@@ -17,40 +12,63 @@ public class ChessPlayer {
 	
 	//variables
 	public Board board;
-	public VisualOutput printer;
 	public Player player1;
 	public Player player2;
 	public boolean stillPlaying;
 	public int turn;
-	//public ChessReplayer myChessReplayer;
-	public Path path;
 	
 	//constructors
 	public ChessPlayer(){
 		this.stillPlaying = true;
 		this.player1 = new Player(0);
 		this.player2 = new Player(1);
-		this.printer = new VisualOutput();
 		this.board = new Board(player1,player2);
 		this.turn = 0;
-		//this.myChessReplayer = initChessPlayer;
-		this.path = null;
 	}
 	
 	//methods
 	
 	//runs the game, is a loop that plays rounds over and over as long as the game is still going (no one has won)
 	//pass in a scanner from the game manager to take input later
-	public void playChess(Scanner myScanner){
+	
+	
+	public void playChess(Scanner myScanner, boolean isNewGame, int reloadedTurn, Board passedBoard, String passedName){
 		System.out.println("Starting a chess game...");
 		System.out.println("INPUT 'exit' AT ANY TIME TO SAVE AND QUIT");
 		stillPlaying = true;
 		
+		
+		if(isNewGame){
+			//creates a folder path directory thing for this game
+			path = myChessReplayer.newGameFolder(myScanner);
+			
 			while(stillPlaying){
 				playRound(myScanner);
 			}
 			System.out.println("Closing chess game...");
-		
+		} else {
+			path = Path.of(passedName);
+			board = passedBoard;
+			turn=reloadedTurn;
+			while(stillPlaying){
+			if (reloadedTurn%2 != 0){
+				takeTurn(player1, myScanner);
+				reloadedTurn++;
+				//System.out.println("checkForCheckmate(player2) called by playRound");
+				if (board.checkForCheckmate(player2)){
+					stillPlaying = false;
+					printer.printBoard(board);
+					if (player2.getTeam()==0){
+						System.out.println("Black loses!");
+					} else {
+						System.out.println("Whites loses!");
+					}
+				}
+			}
+				playRound(myScanner);
+			}
+			System.out.println("Closing chess game...");
+		}
 	}
 	
 	//each round, player 1 takes a turn, then player 2 takes a turn. if someone wins, the game ends
@@ -177,6 +195,11 @@ public class ChessPlayer {
 		}
 			
 		}
+		//exit while loop, means a valid move has been described\
+		//move the piece
+		//int[][] pathArr = new int[board.getBoardNumCols()][board.getBoardNumRows()];
+		//pathArr = boardData[startCol][startRow].drawPath(startCol,startRow,endCol,endRow,board);
+		//System.out.println(Arrays.deepToString(pathArr).replace("], ", "]\n nextcol: "));
 		
 		if (stillPlaying){
 		
@@ -189,6 +212,8 @@ public class ChessPlayer {
 		}
 		//iterate what turn it is for the purpose of...
 		turn++;
+		//creating a new file that stores the current board state as a string so it can be replayed later perhaps
+	
 		}
 		
 	}
@@ -304,8 +329,29 @@ public class ChessPlayer {
 			}
 		}
 		
+		//whereever pathArray[x][y] == 1, check if there board[x][y] != null
+		//if it's not null, 
+			// check if boardData[endCol][endRow].getTeam() == boardData[startCol][startRow].getTeam()
+			// if this is true, then the piece is trying to land on a friendly piece, which is not allowed
+				// return false
+			//otherwise, this is not true, so it's capturing an enemy, which is allowed
+			//return true
+		//otherwise, it is null, empty spot 
+		//return true
+		
+		//up in take turn, have an if statement
+		// if (pathIsClear())
+		// carry on with further checks
+		// else... 
+		//moveIsValid = false
 		return clearPath;
 	}
+	
+	/*
+	//checkmate method got moved to the board class	
+	public boolean checkForCheckmate(){
+		return false;
+	}*/
 
 	//simple method to convert user input into usable coordinates, should make more reliable and flexible in the future but this works for now
 	public int convertCol(String string){
