@@ -51,13 +51,13 @@ class Bishop extends Piece {
 				for(int i = 0; i < numSpacesMoved; i++){
 					currentCol--;
 					currentRow--;
-					pathArray[currentCol][startRow] = 1;
+					pathArray[currentCol][currentRow] = 1;
 				}
 			} else { //moving LEFT and DOWN
 				for(int i = 0; i < numSpacesMoved; i++){
 					currentCol--;
 					currentRow++;
-					pathArray[currentCol][startRow] = 1;
+					pathArray[currentCol][currentRow] = 1;
 				}
 			}
 		} else { //moving RIGHT
@@ -65,13 +65,13 @@ class Bishop extends Piece {
 				for(int i = 0; i < numSpacesMoved; i++){
 					currentCol++;
 					currentRow--;
-					pathArray[currentCol][startRow] = 1;
+					pathArray[currentCol][currentRow] = 1;
 				}
 			} else { //moving RIGHT and DOWN
 				for(int i = 0; i < numSpacesMoved; i++){
 					currentCol++;
 					currentRow++;
-					pathArray[currentCol][startRow] = 1;
+					pathArray[currentCol][currentRow] = 1;
 				}
 			}
 		}
