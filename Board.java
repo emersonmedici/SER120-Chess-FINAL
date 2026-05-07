@@ -212,16 +212,15 @@ public class Board {
 			return null;
 	}
 	
-	//isInCheck method(Player player)
-	public boolean isInCheck(int team){
+public boolean isInCheck(int team){
 		//System.out.println("findKingSquare called by isInCheck");
 		int[] kingsPosition =(findKingSquare(team));
 		
 		if (kingsPosition != null){
 		
 			int Team = team;
-			int kingRow = kingsPosition[0];
-			int kingCol = kingsPosition[1];
+			int kingCol = kingsPosition[0];
+			int kingRow = kingsPosition[1];
 			for(int row = 0; row < this.getBoardNumRows(); row++){
 					for(int col = 0; col < this.getBoardNumCols();col++){
 						Piece piece = boardData[col][row];
@@ -229,7 +228,7 @@ public class Board {
 						if(boardData[col][row] != null && boardData[col][row].getTeam() != Team){
 						//to see if the kings square that is currently on is underattack
 						//I put "this" as the last parameter because it was missing
-							if(boardData[col][row].checkMoveValidity(row,col,kingRow,kingCol, this)){
+							if(boardData[col][row].checkMoveValidity(col,row,kingCol,kingRow, this)){
 								//System.out.println("isInCheck returns true");
 								return true;
 							}
@@ -272,7 +271,7 @@ public class Board {
 		//checking if each piece of move is valid or not
 		for(int row = 0; row < this.getBoardNumRows(); row++){
 			for(int col = 0; col < this.getBoardNumCols();col++){
-				Piece piece = boardData[row][col];
+				Piece piece = boardData[col][row];
 				if(boardData[col][row] != null && boardData[col][row].getTeam() == team){
 					//for each square on the the board
 					for(int newRow = 0;newRow < this.getBoardNumRows();newRow++){
@@ -285,7 +284,7 @@ public class Board {
 							Board tempBoard = copyBoard2();					
 						//cehcks if the peice movement is valid
 							if (tempBoard.boardData[col][row] != null){
-								if(tempBoard.boardData[col][row].checkMoveValidity(row,col,newRow,newCol,tempBoard)){
+								if(tempBoard.boardData[col][row].checkMoveValidity(col,row,newCol,newRow,tempBoard)){
 							//-Simulate Move to see if the move they make is legal//
 							/* og code with the array
 								tempBoard[newRow][newCol] = tempBoard[row][col];
