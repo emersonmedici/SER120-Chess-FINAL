@@ -10,7 +10,7 @@ public class StatusPanel extends JPanel {
 
     private String left  = "TURN: WHITE";
     private String messy = "";
-	private String legal = "LEGAL: ";
+	private String legal = "MOVE: ";
 
     public StatusPanel() {
         setPreferredSize(new Dimension(0, 32));
@@ -19,7 +19,7 @@ public class StatusPanel extends JPanel {
 
 	public void setTurn(Piece.Color turn)   { left  = "TURN: " + turn.name(); repaint(); }
     public void setMessage(String message)  { messy = message == null ? "" : message; repaint(); }
-	public void moveLegalMessage(String message) {legal = "LEGAL: " + message;repaint();}
+	public void moveLegalMessage(String message) {legal = "MOVE: " + message;repaint();}
 
     @Override
     protected void paintComponent(Graphics g0) {
