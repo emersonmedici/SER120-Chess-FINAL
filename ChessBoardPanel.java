@@ -45,6 +45,8 @@ public class ChessBoardPanel extends JPanel {
 	private int team = 1;
 
     private StatusPanel statusPanel;
+	private CapturePanel blackPanel = new CapturePanel();//black capture panel
+    private OtherCaptureStatusPanel whitePanel =  new OtherCaptureStatusPanel(); //white capture panel 
     public ChessBoardPanel(StatusPanel stat) {
 		this.printer = new VisualOutput();
         setPreferredSize(new Dimension(N * SQUARE, N * SQUARE));
@@ -221,6 +223,13 @@ public class ChessBoardPanel extends JPanel {
 								clearPath = false; //not allowed
 							} else { //if the piece occupying the landing space is on the opposite team as the piece that is moving
 								clearPath = true; //this IS allowed, it captures
+								if(boardData[endCol][endRow].getTeam() == 0){
+									whitePanel.checkCapture(boardData[endCol][endRow]);
+									System.out.println("added to the white side panel of pieces captured");
+								}else{
+									blackPanel.checkCapture(boardData[endCol][endRow]);
+									System.out.println("added to the black side panel of peice captured");
+								}
 							}
 						} else { //if this space is NOT the landing space
 							clearPath = false; //return false! something is in the way of the path, this move cannot happen!
