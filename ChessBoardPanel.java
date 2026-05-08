@@ -114,6 +114,8 @@ public class ChessBoardPanel extends JPanel {
 		} else if (boardData[selCol][selRow].checkMoveValidity(selCol,selRow,col,row,board) && pathIsClear(selCol,selRow,col,row,board)){
 			//checks for clear path
 			System.out.println("move is valid and path is clear");
+			statusPanel.moveLegalMessage("true");
+			System.out.println("status panel indicates the move is legal");
 			
 				//move
 				board.movePiece(selCol,selRow,col,row);
@@ -137,7 +139,9 @@ public class ChessBoardPanel extends JPanel {
                 && boardData[col][row].getColor() == boardData[selCol][selRow].getColor()) {
             // switch selection to another own piece
             selRow = row; selCol = col;
-        }
+        }else{
+			statusPanel.moveLegalMessage("false");
+			System.out.println("status panel indicates the move is not legal");
         
         printer.printBoard(board);
         repaint();
