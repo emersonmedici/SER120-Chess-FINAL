@@ -28,6 +28,7 @@ public class OtherCaptureStatusPanel extends JPanel {
 
         g.setColor(new Color(0xE8C08C));
         g.drawString(whiteCaptured, 12, 21);
+		 //going to need to find a way to print the pieces vertically 
 
         g.setColor(new Color(0xFF3860));
         java.awt.FontMetrics fm = g.getFontMetrics();
