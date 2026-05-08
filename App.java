@@ -20,7 +20,7 @@ public class App {
             StatusPanel sp = new StatusPanel();
 			 CapturePanel cp = new CapturePanel();
             OtherCaptureStatusPanel ocp = new OtherCaptureStatusPanel();
-            frame.add(new ChessBoardPanel(sp),  BorderLayout.CENTER);
+            frame.add(new ChessBoardPanel(sp,cp,ocp),  BorderLayout.CENTER);
 
             frame.add(sp, BorderLayout.SOUTH);
 			 //these two panels are for captured peices for balck or white
