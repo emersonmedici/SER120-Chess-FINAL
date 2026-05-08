@@ -45,8 +45,8 @@ public class ChessBoardPanel extends JPanel {
 	private int team = 1;
 
     private StatusPanel statusPanel;
-	private CapturePanel blackPanel = new CapturePanel();//black capture panel
-    private OtherCaptureStatusPanel whitePanel =  new OtherCaptureStatusPanel(); //white capture panel 
+    private CapturePanel whitePanel;//white capture panel
+    private OtherCaptureStatusPanel blackPanel; //black capture panel  
     public ChessBoardPanel(StatusPanel stat) {
 		this.printer = new VisualOutput();
         setPreferredSize(new Dimension(N * SQUARE, N * SQUARE));
@@ -62,7 +62,7 @@ public class ChessBoardPanel extends JPanel {
         addMouseMotionListener(m);
     }
 
-    private void setupStartingPosition() {
+    private void setupStartingPosition(StatusPanel stat,CapturePanel whitePanel, OtherCaptureStatusPanel blackPanel) {
         // i don't think anything actually has to go here, its handled in the board class i thinkkkkkkk
         printer.printBoard(board);
     }
@@ -223,7 +223,7 @@ public class ChessBoardPanel extends JPanel {
 								clearPath = false; //not allowed
 							} else { //if the piece occupying the landing space is on the opposite team as the piece that is moving
 								clearPath = true; //this IS allowed, it captures
-								if(boardData[endCol][endRow].getTeam() == 0){
+								if(boardData[startCol][startRow].getTeam() == 1){
 									whitePanel.checkCapture(boardData[endCol][endRow]);
 									System.out.println("added to the white side panel of pieces captured");
 								}else{
