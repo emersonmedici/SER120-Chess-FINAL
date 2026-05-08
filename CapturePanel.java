@@ -16,7 +16,7 @@ public class CapturePanel extends JPanel {
 
     public CapturePanel() {
 		//if we want another panel I could just add another panel class for either team 
-        setPreferredSize(new Dimension(32,0));
+        setPreferredSize(new Dimension(40,400));
         setBackground(new Color(0x0C0C14));
     }
     
@@ -49,7 +49,7 @@ public class CapturePanel extends JPanel {
         
         //working on print the visuals on the side bar 
        
-
+		revalidate();
         g.dispose();
     }
 }
