@@ -43,7 +43,8 @@ public class OtherCaptureStatusPanel extends JPanel {
         //to the side bar
         for(int i = 0; i < capturedpieces.size();i++){
 		g.drawString(capturedpieces.get(i).getVisual(),4,fm.getHeight() + i * fm.getHeight());
-		
+
+		revalidate();
         g.dispose();
 		}
     }
