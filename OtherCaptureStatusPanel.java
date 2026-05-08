@@ -16,7 +16,7 @@ public class OtherCaptureStatusPanel extends JPanel {
 
     public OtherCaptureStatusPanel() {
 		//if we want another panel I could just add another panel class for either team 
-        setPreferredSize(new Dimension(32,0));
+        setPreferredSize(new Dimension(40,400));
         setBackground(new Color(0x0C0C14));
     }
     
