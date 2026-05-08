@@ -10,6 +10,7 @@ public class StatusPanel extends JPanel {
 
     private String left  = "TURN: WHITE";
     private String messy = "";
+	private String legal = "LEGAL: ";
 
     public StatusPanel() {
         setPreferredSize(new Dimension(0, 32));
@@ -18,6 +19,7 @@ public class StatusPanel extends JPanel {
 
 	public void setTurn(Piece.Color turn)   { left  = "TURN: " + turn.name(); repaint(); }
     public void setMessage(String message)  { messy = message == null ? "" : message; repaint(); }
+	public void moveLegalMessage(String message) {legal = "LEGAL: " + message;repaint();}
 
     @Override
     protected void paintComponent(Graphics g0) {
@@ -31,6 +33,18 @@ public class StatusPanel extends JPanel {
         g.setColor(new Color(0xFF3860));
         java.awt.FontMetrics fm = g.getFontMetrics();
         g.drawString(messy, getWidth() - fm.stringWidth(messy) - 12, 21);
+
+		g.setColor(new Color(0xFF3860));
+        java.awt.FontMetrics ls = g.getFontMetrics();
+
+		//this gets the text width and height
+        int textWidth = ls.stringWidth(legal);
+        int textHeight = ls.getAscent();
+
+		//calculates where the text is going to appear
+        int x = (getWidth() - textWidth)/2;
+        int y = (getHeight() - textHeight)/2;
+        g.drawString(legal,x,y);
         g.dispose();
     }
 }
