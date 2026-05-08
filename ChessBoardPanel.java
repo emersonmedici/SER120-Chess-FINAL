@@ -114,7 +114,7 @@ public class ChessBoardPanel extends JPanel {
 		} else if (boardData[selCol][selRow].checkMoveValidity(selCol,selRow,col,row,board) && pathIsClear(selCol,selRow,col,row,board)){
 			//checks for clear path
 			System.out.println("move is valid and path is clear");
-			statusPanel.moveLegalMessage("true");
+			statusPanel.moveLegalMessage("legal");
 			System.out.println("status panel indicates the move is legal");
 			
 				//move
@@ -140,7 +140,7 @@ public class ChessBoardPanel extends JPanel {
             // switch selection to another own piece
             selRow = row; selCol = col;
         }else{
-			statusPanel.moveLegalMessage("false");
+			statusPanel.moveLegalMessage("illegal");
 			System.out.println("status panel indicates the move is not legal");
         
         printer.printBoard(board);
