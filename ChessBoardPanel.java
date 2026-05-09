@@ -118,7 +118,14 @@ public class ChessBoardPanel extends JPanel {
 			System.out.println("move is valid and path is clear");
 			statusPanel.moveLegalMessage("legal");
 			System.out.println("status panel indicates the move is legal");
-			
+			//handles display of what pieces got captured
+				if(boardData[selCol][selRow].getTeam() == 1){
+						whitePanel.checkCapture(boardData[col][row]);
+						System.out.println("added to the white side panel of pieces captured");
+						}else{
+							blackPanel.checkCapture(boardData[col][row]);
+							System.out.println("added to the black side panel of peice captured");
+						}
 				//move
 				board.movePiece(selCol,selRow,col,row);
 		
