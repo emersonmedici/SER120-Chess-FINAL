@@ -12,19 +12,21 @@ import java.awt.RenderingHints;
 public class CapturePanel extends JPanel {
 	
 	private List<Piece> capturedpieces = new ArrayList <>();
+	private PixelSpriteRenderer sprites = new PixelSpriteRenderer();
+   
 
     public CapturePanel() {
 		//if we want another panel I could just add another panel class for either team 
-        setPreferredSize(new Dimension(40,400));
-        setBackground(new Color(0x0C0C14));
+        setPreferredSize(new Dimension(50,400));
+        setBackground(new Color(0x8B0000));
     }
     
     //this method prints out captured for string(but words get but out if added);
 	public void checkCapture(Piece piece) { 
 		if(piece == null) return;
-		System.out.println("before capture: " + capturedpieces.size());
+		//System.out.println("before capture: " + capturedpieces.size());
 			capturedpieces.add(piece);
-		System.out.println("white Captured: " + capturedpieces.size());
+		//System.out.println("white Captured: " + capturedpieces.size());
 			repaint();
 		}
 	//need something for prameters to transfer information to here to display info
@@ -32,7 +34,6 @@ public class CapturePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g0) {
         super.paintComponent(g0);
-        System.out.println("checkCapture called, list size before: " + capturedpieces.size());
         Graphics2D g = (Graphics2D) g0.create();
         g.setFont(new Font("Monospaced", Font.BOLD, 14));
 		 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -44,8 +45,14 @@ public class CapturePanel extends JPanel {
         //g.rotate(-Math.PI/2);
         //uses the array list that stores captured peices and should print the peices 
         //to the side bar
-        for(int i = 0; i < capturedpieces.size();i++){
+        /*for(int i = 0; i < capturedpieces.size();i++){
 			g.drawString(capturedpieces.get(i).getVisual(),4,fm.getAscent() + i * fm.getHeight());
+		}*/
+		int yy = 2;
+		for(int i = 0; i < capturedpieces.size();i++){
+			//sprites.draw(g,capturedpieces.get(i),10,10,8);
+			sprites.drawCaptured(g,capturedpieces.get(i),yy);
+			yy+=20;
 		}
 
         //going to need to find a way to print the pieces vertically 

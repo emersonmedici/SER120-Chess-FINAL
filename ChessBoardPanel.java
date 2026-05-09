@@ -66,7 +66,7 @@ public class ChessBoardPanel extends JPanel {
 
     private void setupStartingPosition() {
         // i don't think anything actually has to go here, its handled in the board class i thinkkkkkkk
-        printer.printBoard(board);
+        //printer.printBoard(board);
     }
 
     private void handleHover(int x, int y) {
@@ -77,7 +77,7 @@ public class ChessBoardPanel extends JPanel {
     }
 
     private void handleClick(int x, int y) {
-		System.out.println("click");
+		//System.out.println("click");
         int col = x / SQUARE, row = y / SQUARE;
         
         //check its a coord on the board
@@ -89,45 +89,45 @@ public class ChessBoardPanel extends JPanel {
         
         //no piece currently selected
         if (selRow < 0){
-			System.out.println("no piece selected right now, so proceed");
+			//System.out.println("no piece selected right now, so proceed");
         //check there's a piece there 
 			if (boardData[col][row] != null){
-				System.out.println("there is a piece there");
+				//System.out.println("there is a piece there");
 				//checks that the selected piece belongs to the player whose turn it currently is
-				System.out.println("piece team: " + boardData[col][row].getTeam() + "your team: " + team);
+				//System.out.println("piece team: " + boardData[col][row].getTeam() + "your team: " + team);
 				if (boardData[col][row].getTeam() == team){
-					System.out.println("the piece belongs to you");
+					//System.out.println("the piece belongs to you");
 					selRow = row; 
 					selCol = col;
 				} else {
-					System.out.println("the piece does not belong to you");
+					//System.out.println("the piece does not belong to you");
 				}
 			
 			} else {
-				System.out.println("there is no piece there");
+				//System.out.println("there is no piece there");
 			}
 			
 			//something is already selected, now selecting a place to move
 			//if this place is the same exact spot
 			
 		} else if(row == selRow && col == selCol) {
-			System.out.println("same spot, deselect");
+			//System.out.println("same spot, deselect");
 			//deselect
 			selRow = selCol = -1;
 			//checks if this piece can move that way
 		} else if (boardData[selCol][selRow].checkMoveValidity(selCol,selRow,col,row,board) && pathIsClear(selCol,selRow,col,row,board)){
 			//checks for clear path
-			System.out.println("move is valid and path is clear");
+			//System.out.println("move is valid and path is clear");
 			statusPanel.moveLegalMessage("legal");
-			System.out.println("status panel indicates the move is legal");
+			//System.out.println("status panel indicates the move is legal");
 			//handles display of what pieces got captured
 				if(boardData[col][row] != null){
 					if(boardData[selCol][selRow].getTeam() == 1){
 						whitePanel.checkCapture(boardData[col][row]);
-						System.out.println("added to the white side panel of pieces captured");
-					}else{
+						//System.out.println("added to the white side panel of pieces captured");
+					}else if(boardData[selCol][selRow].getTeam() == 0){
 						blackPanel.checkCapture(boardData[col][row]);
-						System.out.println("added to the black side panel of peice captured");
+						//System.out.println("added to the black side panel of peice captured");
 					}
 				}
 				//move
@@ -144,7 +144,7 @@ public class ChessBoardPanel extends JPanel {
 				}
 				
 				statusPanel.setTurn(turn);
-				statusPanel.setMessage("messy marvin");
+				//statusPanel.setMessage("messy marvin");
 			
 				
 			//idk i got this from the example
@@ -154,18 +154,20 @@ public class ChessBoardPanel extends JPanel {
             selRow = row; selCol = col;
         }else{
 			statusPanel.moveLegalMessage("illegal");
-			System.out.println("status panel indicates the move is not legal");
+			//System.out.println("status panel indicates the move is not legal");
         }
-        printer.printBoard(board);
+        //printer.printBoard(board);
         repaint();
         
         if (team == 0){
 			if (board.checkForCheckmate(1)){
-				System.out.println("Black loses!");
+				//System.out.println("Black loses!");
+				statusPanel.setMessage("White wins!");
 			}
 		} else {
 			if (board.checkForCheckmate(0)){
-				System.out.println("White loses!");
+				//System.out.println("White loses!");
+				statusPanel.setMessage("Black wins!");
 			}
 		}
 		

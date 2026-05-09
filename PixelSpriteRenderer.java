@@ -119,6 +119,40 @@ public class PixelSpriteRenderer {
             }
         }
     }
+    
+    public void drawCaptured(Graphics2D g, Piece piece, int y) {
+        String[] bits = SPRITES.get(piece.getType());
+        if (bits == null) return;
+
+        // Inset so pieces don't touch the square edge.
+        
+        int px = 2;              // size of one "big pixel"
+        int ox = 1;
+        int oy = 1+y;
+
+        Color body   = piece.getColor() == Piece.Color.WHITE ? WHITE_BODY   : BLACK_BODY;
+        Color hilite = piece.getColor() == Piece.Color.WHITE ? WHITE_HILITE : BLACK_HILITE;
+
+        // Pass 1: outline — every empty cell touching a body cell.
+        g.setColor(OUTLINE);
+        for (int r = 0; r < GRID; r++) {
+            for (int c = 0; c < GRID; c++) {
+                if (bits[r].charAt(c) == '#') continue;
+                if (touchesBody(bits, r, c)) {
+                    g.fillRect(ox + c * px, oy + r * px, px, px);
+                }
+            }
+        }
+        // Pass 2: body + highlight top of each column-run.
+        for (int r = 0; r < GRID; r++) {
+            for (int c = 0; c < GRID; c++) {
+                if (bits[r].charAt(c) != '#') continue;
+                boolean top = (r == 0) || bits[r - 1].charAt(c) != '#';
+                g.setColor(top ? hilite : body);
+                g.fillRect(ox + c * px, oy + r * px, px, px);
+            }
+        }
+    }
 
     private static boolean touchesBody(String[] bits, int r, int c) {
         int[][] n = {{-1,0},{1,0},{0,-1},{0,1}};

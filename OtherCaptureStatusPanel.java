@@ -13,19 +13,20 @@ public class OtherCaptureStatusPanel extends JPanel {
 	
 	
     private List<Piece> capturedpieces = new ArrayList <>();
+	private PixelSpriteRenderer sprites = new PixelSpriteRenderer();
 
     public OtherCaptureStatusPanel() {
 		//if we want another panel I could just add another panel class for either team 
-        setPreferredSize(new Dimension(40,400));
-        setBackground(new Color(0x0C0C14));
+        setPreferredSize(new Dimension(50,400));
+        setBackground(new Color(0x8B0000));
     }
     
     //this method prints out captured for string(but words get but out if added);
 			public void checkCapture(Piece piece) { 
 			if(piece == null) return;
-		System.out.println("before capture: " + capturedpieces.size());
+		//System.out.println("before capture: " + capturedpieces.size());
 			capturedpieces.add(piece);
-		System.out.println("black Captured: " + capturedpieces.size());
+		//System.out.println("black Captured: " + capturedpieces.size());
 			repaint();
 			}
 
@@ -63,8 +64,11 @@ public class OtherCaptureStatusPanel extends JPanel {
         //g.rotate(-Math.PI/2);
         //uses the array list that stores captured peices and should print the peices 
         //to the side bar
-        for(int i = 0; i < capturedpieces.size();i++){
-			g.drawString(capturedpieces.get(i).getVisual(),4,fm.getAscent() + i * fm.getHeight());
+        int yy = 2;
+		for(int i = 0; i < capturedpieces.size();i++){
+			//sprites.draw(g,capturedpieces.get(i),10,10,8);
+			sprites.drawCaptured(g,capturedpieces.get(i),yy);
+			yy+=20;
 		}
 
         //going to need to find a way to print the pieces vertically 
