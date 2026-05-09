@@ -22,7 +22,10 @@ public class CapturePanel extends JPanel {
     
     //this method prints out captured for string(but words get but out if added);
 	public void checkCapture(Piece piece) { 
+		if(piece == null) return;
+		System.out.println("before capture: " + capturedpieces.size());
 			capturedpieces.add(piece);
+		System.out.println("white Captured: " + capturedpieces.size());
 			repaint();
 		}
 	//need something for prameters to transfer information to here to display info
