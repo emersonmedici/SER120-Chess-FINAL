@@ -16,7 +16,7 @@ class King extends Piece {
 	public boolean checkMoveValidity(int startCol, int startRow, int endCol, int endRow, Board board){
 		//check move validity for this piece, how does this piece move?
 		
-		if ((endCol > startCol+1) || (endCol < startCol-1) || (endRow > startRow+1) || (endRow < endRow-1)){
+		if ((endCol > startCol+1) || (endCol < startCol-1) || (endRow > startRow+1) || (endRow < startRow-1)){
 			return false;
 		} else {
 			return true;
