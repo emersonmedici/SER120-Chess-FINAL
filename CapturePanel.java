@@ -12,7 +12,6 @@ import java.awt.RenderingHints;
 public class CapturePanel extends JPanel {
 	
 	private List<Piece> capturedpieces = new ArrayList <>();
-    private final PixelSpriteRenderer sprites = new PixelSpriteRenderer();
 
     public CapturePanel() {
 		//if we want another panel I could just add another panel class for either team 
