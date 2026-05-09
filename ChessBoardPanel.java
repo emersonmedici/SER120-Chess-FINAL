@@ -47,8 +47,10 @@ public class ChessBoardPanel extends JPanel {
     private StatusPanel statusPanel;
     private CapturePanel whitePanel;//white capture panel
     private OtherCaptureStatusPanel blackPanel; //black capture panel  
-    public ChessBoardPanel(StatusPanel stat) {
+     public ChessBoardPanel(StatusPanel stat,CapturePanel whitePanel, OtherCaptureStatusPanel blackPanel) {
 		this.printer = new VisualOutput();
+		this.whitePanel = whitePanel;
+		this.blackPanel = blackPanel;
         setPreferredSize(new Dimension(N * SQUARE, N * SQUARE));
         setBackground(new Color(0x1A1A24));
         setupStartingPosition();
@@ -62,7 +64,7 @@ public class ChessBoardPanel extends JPanel {
         addMouseMotionListener(m);
     }
 
-    private void setupStartingPosition(StatusPanel stat,CapturePanel whitePanel, OtherCaptureStatusPanel blackPanel) {
+    private void setupStartingPosition() {
         // i don't think anything actually has to go here, its handled in the board class i thinkkkkkkk
         printer.printBoard(board);
     }
