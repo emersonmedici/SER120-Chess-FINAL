@@ -40,13 +40,12 @@ public class OtherCaptureStatusPanel extends JPanel {
 			g.setColor(new Color(0xE8C08C));
         //means black captures
         java.awt.FontMetrics fm = g.getFontMetrics();
-        g.translate(getWidth()/2.0,getHeight()/2.0);
-        g.rotate(-Math.PI/2);
+        //g.translate(getWidth()/2.0,getHeight()/2.0);
+        //g.rotate(-Math.PI/2);
         //uses the array list that stores captured peices and should print the peices 
         //to the side bar
         for(int i = 0; i < capturedpieces.size();i++){
 		g.drawString(capturedpieces.get(i).getVisual(),4,fm.getHeight() + i * fm.getHeight());
-
 		revalidate();
         g.dispose();
 		}
