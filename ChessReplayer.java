@@ -1,7 +1,7 @@
 //Chess Project 2
 //ChessReplayer.java
 
-package ser120.ChessProject4;
+package ser120.ChessProject2;
 
 import java.io.*; 
 import java.io.IOException;
