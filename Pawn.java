@@ -50,7 +50,7 @@ class Pawn extends Piece {
 		
 		//for white
 		if (this.team == 1){
-			if (endRow > startRow){ // if the piece is trying to move backwards (not allowed)
+			if (endRow >= startRow){ // if the piece is trying to move backwards (not allowed)
 				return false;
 			} else { //piece is not trying to move backwards
 				if (endRow < startRow - max) { // if the piece is trying to move too far forward
@@ -83,7 +83,7 @@ class Pawn extends Piece {
 			}
 		} else {
 		//for black
-			if (endRow < startRow){ // if the piece is trying to move backwards (not allowed)
+			if (endRow <= startRow){ // if the piece is trying to move backwards (not allowed)
 				return false;
 			} else { //piece is not trying to move backwards
 				if (endRow > startRow + max) { // if the piece is trying to move too far forward
