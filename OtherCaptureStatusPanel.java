@@ -22,8 +22,11 @@ public class OtherCaptureStatusPanel extends JPanel {
     
     //this method prints out captured for string(but words get but out if added);
 			public void checkCapture(Piece piece) { 
-			capturedpieces.add(piece);
-			repaint();
+				if(piece == null) return;
+					System.out.println("before capture: " + capturedpieces.size());
+					capturedpieces.add(piece);
+					System.out.println("after black capture: " + capturedpieces.size());
+					repaint();
 			}
 
     @Override
