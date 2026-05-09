@@ -1,4 +1,4 @@
-package SER120.ChessProject3;
+package ser120.ChessProject4;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
