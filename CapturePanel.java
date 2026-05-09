@@ -12,7 +12,7 @@ import java.awt.RenderingHints;
 public class CapturePanel extends JPanel {
 	
 	private List<Piece> capturedpieces = new ArrayList <>();
-   
+    private final PixelSpriteRenderer sprites = new PixelSpriteRenderer();
 
     public CapturePanel() {
 		//if we want another panel I could just add another panel class for either team 
@@ -33,6 +33,7 @@ public class CapturePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g0) {
         super.paintComponent(g0);
+        System.out.println("checkCapture called, list size before: " + capturedpieces.size());
         Graphics2D g = (Graphics2D) g0.create();
         g.setFont(new Font("Monospaced", Font.BOLD, 14));
 		 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -40,8 +41,8 @@ public class CapturePanel extends JPanel {
         g.setColor(new Color(0xE8C08C));
         //means black captures
         java.awt.FontMetrics fm = g.getFontMetrics();
-        g.translate(getWidth()/2.0,getHeight()/2.0);
-        g.rotate(-Math.PI/2);
+        //g.translate(getWidth()/2.0,getHeight()/2.0);
+        //g.rotate(-Math.PI/2);
         //uses the array list that stores captured peices and should print the peices 
         //to the side bar
         for(int i = 0; i < capturedpieces.size();i++){
