@@ -231,14 +231,7 @@ public class ChessBoardPanel extends JPanel {
 							if(boardData[endCol][endRow].getTeam() == boardData[startCol][startRow].getTeam()){ //if the piece on the landing space is the same team as the piece that is moving
 								clearPath = false; //not allowed
 							} else { //if the piece occupying the landing space is on the opposite team as the piece that is moving
-								clearPath = true; //this IS allowed, it captures
-								if(boardData[startCol][startRow].getTeam() == 1){
-									whitePanel.checkCapture(boardData[endCol][endRow]);
-									System.out.println("added to the white side panel of pieces captured");
-								}else{
-									blackPanel.checkCapture(boardData[endCol][endRow]);
-									System.out.println("added to the black side panel of peice captured");
-								}
+								clearPath = true; //this IS allowed, it capture
 							}
 						} else { //if this space is NOT the landing space
 							clearPath = false; //return false! something is in the way of the path, this move cannot happen!
